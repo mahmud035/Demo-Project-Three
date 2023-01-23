@@ -22,11 +22,18 @@ const Users = () => {
   console.log(users);
 
   return (
-    <div className="px-4 py-5 max-w-screen-xl mx-auto ">
+    <div className="px-4 py-5 max-w-screen-xl mx-auto">
       <div className="mx-auto container">
-        {users.map((user) => (
-          <SummaryCard key={user.id} user={user} />
-        ))}
+        <div className="grid gap-10">
+          {users.map((user) => (
+            <SummaryCard
+              key={user.id}
+              user={user}
+              classes="shadow-md rounded-3xl"
+              btnText="View Details"
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
