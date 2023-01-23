@@ -56,10 +56,13 @@ const Users = () => {
         <div>
           <div className="flex justify-center space-x-1 text-gray-900 font-medium ">
             <button
-              disabled={pageNumber === 1}
+              onClick={() => setPageNumber(pageNumber - 1)}
+              disabled={pageNumber === '1'}
               title="previous"
               type="button"
-              className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md bg-gray-100 border-gray-100"
+              className={`inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md bg-gray-100 border-gray-100 ${
+                pageNumber === '1' && 'cursor-not-allowed'
+              }`}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -114,10 +117,13 @@ const Users = () => {
               4
             </button>
             <button
-              disabled={pageNumber === 4}
+              onClick={() => setPageNumber(pageNumber + 1)}
+              disabled={pageNumber === '4'}
               title="next"
               type="button"
-              className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md  border-gray-100"
+              className={`inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md  border-gray-100 ${
+                pageNumber === '4' && 'cursor-not-allowed'
+              }`}
             >
               <svg
                 viewBox="0 0 24 24"
