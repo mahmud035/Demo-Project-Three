@@ -4,7 +4,7 @@ import Spinner from './Spinner';
 import SummaryCard from './SummaryCard';
 
 const Users = () => {
-  const [pageNumber, setPageNumber] = useState('1');
+  const [pageNumber, setPageNumber] = useState(1);
   console.log(pageNumber);
 
   const fetchUsers = (pageNumber) =>
@@ -52,16 +52,22 @@ const Users = () => {
           ))}
         </div>
 
+        {/* FIXME: why prev & next button isn't working properly? */}
+
         {/* Pagination */}
         <div>
           <div className="flex justify-center space-x-1 text-gray-900 font-medium ">
             <button
-              onClick={() => setPageNumber(pageNumber - 1)}
-              disabled={pageNumber === '1'}
+              onClick={() => {
+                if (pageNumber >= 1) {
+                  setPageNumber(pageNumber - 1);
+                }
+              }}
+              disabled={pageNumber.toString() <= 1 ? true : false}
               title="previous"
               type="button"
               className={`inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md bg-gray-100 border-gray-100 ${
-                pageNumber === '1' && 'cursor-not-allowed'
+                pageNumber === 1 && 'cursor-not-allowed'
               }`}
             >
               <svg
@@ -77,52 +83,58 @@ const Users = () => {
               </svg>
             </button>
             <button
-              onClick={(e) => setPageNumber(e.target.innerText)}
+              onClick={(e) => setPageNumber(parseInt(e.target.innerText))}
               type="button"
               title="Page 1"
               className={`inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md  ${
-                pageNumber === '1' && 'bg-red-500 text-white'
+                pageNumber === 1 && 'bg-red-500 text-white'
               }`}
             >
               1
             </button>
             <button
-              onClick={(e) => setPageNumber(e.target.innerText)}
+              onClick={(e) => setPageNumber(parseInt(e.target.innerText))}
               type="button"
               className={`inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md  ${
-                pageNumber === '2' && 'bg-red-500 text-white'
+                pageNumber === 2 && 'bg-red-500 text-white'
               }`}
               title="Page 2"
             >
               2
             </button>
             <button
-              onClick={(e) => setPageNumber(e.target.innerText)}
+              onClick={(e) => setPageNumber(parseInt(e.target.innerText))}
               type="button"
               className={`inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md  ${
-                pageNumber === '3' && 'bg-red-500 text-white'
+                pageNumber === 3 && 'bg-red-500 text-white'
               }`}
               title="Page 3"
             >
               3
             </button>
             <button
-              onClick={(e) => setPageNumber(e.target.innerText)}
+              onClick={(e) =>
+                setPageNumber(parseInt(e.target.innerText)).toString()
+              }
               type="button"
               className={`inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md  ${
-                pageNumber === '4' && 'bg-red-500 text-white'
+                pageNumber === 4 && 'bg-red-500 text-white'
               }`}
               title="Page 4"
             >
               4
             </button>
             <button
-              onClick={() => setPageNumber(pageNumber + 1)}
-              disabled={pageNumber === '4'}
+              onClick={() => {
+                if (pageNumber < 4) {
+                  setPageNumber(pageNumber + 1);
+                }
+              }}
+              disabled={pageNumber === 4 ? true : false}
               title="next"
               type="button"
               className={`inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md  border-gray-100 ${
-                pageNumber === '4' && 'cursor-not-allowed'
+                pageNumber === 4 && 'cursor-not-allowed'
               }`}
             >
               <svg
